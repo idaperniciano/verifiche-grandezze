@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica di Fisica </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+        
+        input[type="text"] {
+            border: 2px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 700;
+            outline: none;
+            transition: all 0.2s;
+        }
+        input[type="text"]:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .input-base { width: 140px; }
+        .input-small { width: 60px; }
+        .input-med { width: 100px; }
+
+        /* Stile Modal per la consegna */
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            z-index: 50;
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 flex justify-center pb-24">
+
+    <div class="w-full max-w-4xl bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-slate-200">
+        
+        <!-- Intestazione Compito -->
+        <div class="border-b-2 border-slate-800 pb-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-800">Verifica Formativa</h1>
+                    <p class="text-slate-500 font-medium mt-1">Fisica - Matematica in campo</p>
+                </div>
+                <div class="flex flex-col gap-2 w-full md:w-auto">
+                    <input type="text" id="nome-studente" class="text-left px-4 !w-full md:!w-64 border-slate-300" placeholder="Nome e Cognome" required>
+                </div>
+            </div>
+            <div class="mt-4 bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-lg text-sm font-semibold">
+                ⚠️ Regola fondamentale: utilizza ESCLUSIVAMENTE la virgola (,) per i decimali. Per i numeri grandi puoi usare lo spazio per separare le migliaia.
+            </div>
+        </div>
+
+        <div id="test-container" class="space-y-12">
+
+            <!-- SEZIONE 1 -->
+            <section>
+                <div class="bg-blue-50 px-4 py-3 rounded-t-lg border border-blue-200 font-bold text-blue-800 text-lg">
+                    Sezione 1: Dalla Notazione Scientifica alla Forma Estesa
+                </div>
+                <div class="border border-slate-200 rounded-b-lg p-2 bg-slate-50 space-y-2">
+                    <!-- Q1 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">1.</span> Massa trattore: <span class="mono font-bold">3,5 × 10<sup>4</sup> kg</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="1" data-ans="35000,35 000"><span class="text-slate-500 font-medium">kg</span></div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">2.</span> Insetto parassita: <span class="mono font-bold">1,2 × 10<sup>-3</sup> m</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="2" data-ans="0,0012"><span class="text-slate-500 font-medium">m</span></div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">3.</span> Energia termica: <span class="mono font-bold">4,05 × 10<sup>6</sup> J</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="3" data-ans="4050000,4 050 000"><span class="text-slate-500 font-medium">J</span></div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">4.</span> Inquinante: <span class="mono font-bold">8,7 × 10<sup>-5</sup> g</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="4" data-ans="0,000087"><span class="text-slate-500 font-medium">g</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEZIONE 2 -->
+            <section>
+                <div class="bg-emerald-50 px-4 py-3 rounded-t-lg border border-emerald-200 font-bold text-emerald-800 text-lg">
+                    Sezione 2: Arrotondamento 
+                </div>
+                <div class="border border-slate-200 rounded-b-lg p-2 bg-slate-50 space-y-2">
+                    <!-- Q5 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">5.</span> Arrotonda a <span class="underline font-bold">1 cifra</span> decimale: <span class="mono font-bold">12,96 m</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="5" data-ans="13,0"><span class="text-slate-500 font-medium">m</span></div>
+                    </div>
+                    <!-- Q6 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">6.</span> Arrotonda a <span class="underline font-bold">1 cifra</span> decimale: <span class="mono font-bold">4,34 kg</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="6" data-ans="4,3"><span class="text-slate-500 font-medium">kg</span></div>
+                    </div>
+                    <!-- Q7 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">7.</span> Arrotonda a <span class="underline font-bold">2 cifre</span> decimali: <span class="mono font-bold">0,055 L</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="7" data-ans="0,06"><span class="text-slate-500 font-medium">L</span></div>
+                    </div>
+                    <!-- Q8 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">8.</span> Arrotonda all'<span class="underline font-bold">intero</span>: <span class="mono font-bold">24,8 °C</span></div>
+                        <div class="flex items-center gap-2"><input type="text" class="q-input input-base" data-q="8" data-ans="25"><span class="text-slate-500 font-medium">°C</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEZIONE 3 -->
+            <section>
+                <div class="bg-purple-50 px-4 py-3 rounded-t-lg border border-purple-200 font-bold text-purple-800 text-lg">
+                    Sezione 3: Dalla Forma Estesa alla Notazione Scientifica
+                </div>
+                <div class="border border-slate-200 rounded-b-lg p-2 bg-slate-50 space-y-2">
+                    <!-- Q9 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">9.</span> Superficie campo: <span class="mono font-bold">450 000 m<sup>2</sup></span></div>
+                        <div class="flex items-center gap-1">
+                            <input type="text" class="q-input input-med" data-q="9" data-ans="4,5" placeholder="Coeff.">
+                            <span class="font-bold mx-1">× 10</span>
+                            <input type="text" class="q-input input-small -mt-4 text-sm" data-q="9_exp" data-ans="5" placeholder="Esp.">
+                        </div>
+                    </div>
+                    <!-- Q10 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">10.</span> Massa foglia: <span class="mono font-bold">0,00032 kg</span></div>
+                        <div class="flex items-center gap-1">
+                            <input type="text" class="q-input input-med" data-q="10" data-ans="3,2" placeholder="Coeff.">
+                            <span class="font-bold mx-1">× 10</span>
+                            <input type="text" class="q-input input-small -mt-4 text-sm" data-q="10_exp" data-ans="-4" placeholder="Esp.">
+                        </div>
+                    </div>
+                    <!-- Q11 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">11.</span> Potenza solare: <span class="mono font-bold">14 500 000 W</span></div>
+                        <div class="flex items-center gap-1">
+                            <input type="text" class="q-input input-med" data-q="11" data-ans="1,45" placeholder="Coeff.">
+                            <span class="font-bold mx-1">× 10</span>
+                            <input type="text" class="q-input input-small -mt-4 text-sm" data-q="11_exp" data-ans="7" placeholder="Esp.">
+                        </div>
+                    </div>
+                    <!-- Q12 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">12.</span> Granello polline: <span class="mono font-bold">0,000007 m</span></div>
+                        <div class="flex items-center gap-1">
+                            <input type="text" class="q-input input-med" data-q="12" data-ans="7" placeholder="Coeff.">
+                            <span class="font-bold mx-1">× 10</span>
+                            <input type="text" class="q-input input-small -mt-4 text-sm" data-q="12_exp" data-ans="-6" placeholder="Esp.">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEZIONE 4 -->
+            <section>
+                <div class="bg-amber-50 px-4 py-3 rounded-t-lg border border-amber-200 font-bold text-amber-900 text-lg">
+                    Sezione 4: Ordine di Grandezza (La Soglia del 5)
+                </div>
+                <div class="border border-slate-200 rounded-b-lg p-2 bg-slate-50 space-y-2">
+                    <!-- Q13 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">13.</span> OdG di: <span class="mono font-bold">3,2 × 10<sup>4</sup> kg</span></div>
+                        <div class="flex items-center gap-1"><span class="text-xl font-bold">10</span><input type="text" class="q-input input-small -mt-4 text-sm" data-q="13" data-ans="4"></div>
+                    </div>
+                    <!-- Q14 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">14.</span> OdG di: <span class="mono font-bold">6,8 × 10<sup>5</sup> m</span></div>
+                        <div class="flex items-center gap-1"><span class="text-xl font-bold">10</span><input type="text" class="q-input input-small -mt-4 text-sm" data-q="14" data-ans="6"></div>
+                    </div>
+                    <!-- Q15 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">15.</span> OdG di: <span class="mono font-bold text-red-600">4,9</span><span class="mono font-bold"> × 10<sup>-3</sup> m</span></div>
+                        <div class="flex items-center gap-1"><span class="text-xl font-bold">10</span><input type="text" class="q-input input-small -mt-4 text-sm" data-q="15" data-ans="-3"></div>
+                    </div>
+                    <!-- Q16 -->
+                    <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-lg"><span class="font-bold text-slate-400 mr-2">16.</span> OdG di: <span class="mono font-bold text-green-600">5,1</span><span class="mono font-bold"> × 10<sup>-4</sup> m</span></div>
+                        <div class="flex items-center gap-1"><span class="text-xl font-bold">10</span><input type="text" class="q-input input-small -mt-4 text-sm" data-q="16" data-ans="-3"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Tasto Consegna -->
+        <div class="mt-12 pt-6 border-t border-slate-200 text-center">
+            <button id="btn-consegna" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xl py-5 px-12 rounded-full shadow-lg transition-transform active:scale-95 w-full md:w-auto">
+                Consegna Compito
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Schermata di blocco e Resoconto (Invisibile fino alla consegna) -->
+    <div id="modal-overlay" class="flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center border-t-8 border-blue-600">
+            <h2 class="text-3xl font-black text-slate-800 mb-2">Consegnato!</h2>
+            <p class="text-slate-500 mb-6">Il test è stato bloccato. Copia il codice qui sotto e incollalo su Classroom.</p>
+            
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-lg mb-6">
+                <textarea id="testo-risultato" class="w-full h-32 bg-transparent text-slate-700 font-mono text-sm resize-none outline-none" readonly></textarea>
+            </div>
+
+            <button id="btn-copia" class="bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-md w-full flex items-center justify-center gap-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                Copia Risultato
+            </button>
+            <p id="msg-copiato" class="text-green-600 font-bold mt-3 opacity-0 transition-opacity">✅ Copiato negli appunti!</p>
+        </div>
+    </div>
+
+    <script>
+        // Filtro per forzare la virgola e permettere solo numeri, meno e spazio
+        document.querySelectorAll('.q-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                let val = e.target.value.replace(/\./g, ','); // Punto -> Virgola
+                val = val.replace(/[^0-9,\-\s]/g, ''); // Permette solo cifre, virgola, meno e spazio
+                
+                // Evita virgole multiple
+                const parts = val.split(',');
+                if (parts.length > 2) val = parts[0] + ',' + parts.slice(1).join('');
+                e.target.value = val;
+            });
+        });
+
+        // Nomi delle sezioni per il report errori
+        const sezioneNomi = {
+            1: "Notazione Scientifica -> Estesa",
+            2: "Notazione Scientifica -> Estesa",
+            3: "Notazione Scientifica -> Estesa",
+            4: "Notazione Scientifica -> Estesa",
+            5: "Arrotondamento (1 dec)",
+            6: "Arrotondamento (1 dec)",
+            7: "Arrotondamento (2 dec)",
+            8: "Arrotondamento (Intero)",
+            9: "Estesa -> Scientifica",
+            10: "Estesa -> Scientifica",
+            11: "Estesa -> Scientifica",
+            12: "Estesa -> Scientifica",
+            13: "Ordine di Grandezza",
+            14: "Ordine di Grandezza",
+            15: "Ordine di Grandezza (Soglia < 5)",
+            16: "Ordine di Grandezza (Soglia > 5)"
+        };
+
+        document.getElementById('btn-consegna').addEventListener('click', () => {
+            const nome = document.getElementById('nome-studente').value.trim();
+            if (!nome) {
+                alert("Attenzione: Inserisci Nome e Cognome prima di consegnare!");
+                document.getElementById('nome-studente').focus();
+                return;
+            }
+
+            let punteggio = 0;
+            let errori = [];
+
+            // Valutazione automatica
+            // Usiamo Set per tracciare le domande (visto che 9,10,11,12 hanno 2 campi di input)
+            const domandeElaborate = new Set();
+
+            document.querySelectorAll('.q-input').forEach(input => {
+                const qId = input.getAttribute('data-q'); // Es: "1" oppure "9_exp"
+                const baseQ = qId.split('_')[0]; // Prende il numero della domanda
+                
+                if (domandeElaborate.has(baseQ)) return; // Evita di conteggiare due volte la stessa domanda
+                domandeElaborate.add(baseQ);
+
+                let isCorrect = true;
+
+                // Se la domanda ha più campi (es. coefficiente ed esponente per la sezione 3)
+                const inputsRelativi = document.querySelectorAll(`.q-input[data-q^="${baseQ}"]`);
+                
+                inputsRelativi.forEach(inp => {
+                    const userAns = inp.value.trim().replace(/\s/g, ''); // Rimuove spazi per il confronto
+                    const acceptedAns = inp.getAttribute('data-ans').split(','); // Array di risposte valide (es. con o senza spazio)
+                    
+                    // Controlla se la risposta data è tra quelle accettate
+                    let matched = false;
+                    acceptedAns.forEach(ans => {
+                        if (userAns === ans.replace(/\s/g, '')) matched = true;
+                    });
+
+                    if (!matched) isCorrect = false;
+                });
+
+                if (isCorrect) {
+                    punteggio++;
+                } else {
+                    errori.push(`Domanda ${baseQ} (${sezioneNomi[baseQ]})`);
+                }
+            });
+
+            // Prepara il testo per Classroom
+            const totaleDomande = 16;
+            const dataOggi = new Date().toLocaleDateString('it-IT');
+            const oraOggi = new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+            
+            let reportText = `🎓 ESITO VERIFICA\n`;
+            reportText += `Studente: ${nome}\n`;
+            reportText += `Data: ${dataOggi} ore ${oraOggi}\n`;
+            reportText += `Punteggio: ${punteggio} / ${totaleDomande}\n`;
+            reportText += `-------------------\n`;
+            
+            if (errori.length === 0) {
+                reportText += `Nessun errore! Lavoro perfetto.`;
+            } else {
+                reportText += `Da ripassare:\n- ` + errori.join(`\n- `);
+            }
+
+            // Inserisce il testo nella textarea e mostra il blocco
+            document.getElementById('testo-risultato').value = reportText;
+            document.getElementById('modal-overlay').style.display = 'flex';
+        });
+
+        // Funzione di Copia negli Appunti
+        document.getElementById('btn-copia').addEventListener('click', () => {
+            const testo = document.getElementById('testo-risultato').value;
+            navigator.clipboard.writeText(testo).then(() => {
+                const msg = document.getElementById('msg-copiato');
+                msg.style.opacity = '1';
+                document.getElementById('btn-copia').textContent = "Copiato!";
+                document.getElementById('btn-copia').classList.replace('bg-green-600', 'bg-slate-600');
+                
+                setTimeout(() => {
+                    msg.style.opacity = '0';
+                    document.getElementById('btn-copia').textContent = "Copia Risultato";
+                    document.getElementById('btn-copia').classList.replace('bg-slate-600', 'bg-green-600');
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
